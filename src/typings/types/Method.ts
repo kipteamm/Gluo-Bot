@@ -1,0 +1,2 @@
+export type Method<Args extends any[] = any[], Return = any, This = any> = (this: This, ...args: Args) => Return
+export type AsyncMethod<Args extends any[] = any[], Return = any, This = any> = (this: This, ...args: Args) => Promise<Return> | Return

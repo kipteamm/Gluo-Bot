@@ -1,0 +1,29 @@
+// Prisma doesnt allow varchar for sqlite apparently (?)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./db.sqlite"
+}
+
+model TempBan {
+  user_id String @id 
+  ends_at Float
+}
+
+model Warning {
+  case Int @id @default(autoincrement())
+  // The person that got warned
+  target_id String 
+
+  issued_at DateTime @default(now())
+  
+  // The person that warned the person
+  moderator_id String
+
+  // Reason they were banned
+  reason String? 
+}
