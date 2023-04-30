@@ -12,9 +12,8 @@ import createButtonRole from "./functions/createButtonRole";
  */
 export default (client: NekoClient) => ({
     owners: [
-        ''
+        '1096285761365610576'
     ],
-    
     modLogsChannel: client.getChannel<TextChannel>('1054002760665792562'),
     guild: client.guilds.cache.get('861581041902813194')!,
     // Please keep this ordered
