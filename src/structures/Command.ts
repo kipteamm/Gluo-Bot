@@ -40,6 +40,11 @@ export class Command<Args extends [...IArgData[]] = IArgData[]> {
                     break
                 }
 
+                case ArgType.Attachment: {
+                    value = int.options.getAttachment(arg.name, arg.required)
+                    break
+                }
+                
                 case ArgType.String: {
                     value = int.options.getString(arg.name, arg.required)
                     break

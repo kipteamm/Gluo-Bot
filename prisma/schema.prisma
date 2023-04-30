@@ -17,10 +17,12 @@ model TempBan {
 model Warning {
   case Int @id @default(autoincrement())
   // The person that got warned
-  target_id String 
+  target_id String
 
   issued_at DateTime @default(now())
   
+  updated_at DateTime? @updatedAt
+
   // The person that warned the person
   moderator_id String
 

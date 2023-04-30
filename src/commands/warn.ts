@@ -26,13 +26,14 @@ export default new Command({
         {
             name: 'reason',
             type: ArgType.String,
+            default: () => NoReason,
             description: `The reason to warn this user for`
         }
     ],
     async execute(i, [ member, reason ]) {
         if (!PermissionManager.hasHigherRole(i.member, member)) {
             await i.editReply({
-                content: `You cannot manage this ${member.user.tag}.`
+                content: `You cannot manage ${member.user.tag}.`
             })
             return false
         }
@@ -64,12 +65,12 @@ export default new Command({
                 case WarningActionType.Tempban:
                 case WarningActionType.Ban: {
                     await member.ban({
-                        reason: reason ?? NoReason,
+                        reason,
                         deleteMessageSeconds: 1 * 60 * 24,
                     })
 
                     if (action.type === WarningActionType.Tempban) {
-                        const temp = await DatabaseManager.addTempBan({
+                        const temp = await DatabaseManager.addTempBan(this, {
                             ends_at: Date.now() + action.duration,
                             user_id: member.id
                         })
@@ -80,12 +81,12 @@ export default new Command({
                 }
 
                 case WarningActionType.Kick: {
-                    await member.kick(reason ?? NoReason)
+                    await member.kick(reason)
                     break
                 }
 
                 case WarningActionType.Timeout: {
-                    await member.timeout(action.duration, reason ?? NoReason)
+                    await member.timeout(action.duration, reason)
                     break
                 }
             }

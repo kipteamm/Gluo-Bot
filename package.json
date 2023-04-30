@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "bot": "tsc && node ."
+    "bot": "tsc && node .",
+    "test": "tsc && node dist/__tests__/runner"
   },
   "keywords": [],
   "author": "",

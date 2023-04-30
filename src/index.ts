@@ -15,6 +15,7 @@ const client = new NekoClient({
         Partials.User
     ],
     intents: [
+        GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildModeration,
         GatewayIntentBits.Guilds
     ]
@@ -24,5 +25,9 @@ CommandManager.load()
 EventManager.load(client)
 
 client.login()
+
+process.on('uncaughtException', console.error)
+process.on('uncaughtExceptionMonitor', console.error)
+process.on('unhandledRejection', console.error)
 
 bash(client)

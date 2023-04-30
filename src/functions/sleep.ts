@@ -1,15 +1,20 @@
-import { setTimeout } from "timers/promises"
+import noop from "./noop"
 
 const max = 1000 * 60 * 24 * 21
 
-export default async function sleep(ms: number) {
+export default async function sleep(ms: number, onTimeout?: (timeout: NodeJS.Timeout) => any) {
     if (ms < 1) return Promise.resolve()
     
     if (ms > max) {
         while (ms !== 0) {
-            await sleep(max)
+            await sleep(max, onTimeout)
             ms -= max
         }
     }
-    return setTimeout(ms)
+    const timeout = new Promise(r => {
+        const got = setTimeout(r, ms)
+        onTimeout?.(got)
+    })
+
+    return timeout
 }

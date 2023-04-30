@@ -32,7 +32,7 @@ export class CommandManager {
         if (!(await command.hasPermissions(i))) return;
         
         const args = await command.parseArgs(i)
-        const result = await handleResult(
+        await handleResult(
             i,
             async () => await command.data.execute.call(i.client as NekoClient, cast(i), args as [])
         )

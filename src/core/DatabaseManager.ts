@@ -1,5 +1,6 @@
 import { PrismaClient, TempBan, Warning } from "@prisma/client";
 import { TempBanManager } from "./TempBanManager";
+import { NekoClient } from "./NekoClient";
 
 class Database extends PrismaClient {
     getCase(c: number) {
@@ -34,7 +35,7 @@ class Database extends PrismaClient {
         })
     }
 
-    addCase(data: Omit<Warning, 'case' | 'issued_at'>) {
+    addCase(data: Omit<Warning, 'case' | 'issued_at' | 'updated_at'>) {
         return this.warning.create({
             data
         })
@@ -48,13 +49,11 @@ class Database extends PrismaClient {
         })
     }
 
-    addTempBan(data: TempBan) {
-        return this.tempBan.create({
-            data
-        })
+    addTempBan(client: NekoClient, data: TempBan) {
+        return TempBanManager.create(client, data)
     }
 
-    updateCase(c: number, data: Partial<Omit<Warning, 'case' | 'issued_at'>>) {
+    updateCase(c: number, data: Partial<Omit<Warning, 'case' | 'updated_at' | 'issued_at'>>) {
         return this.warning.update({
             data,
             where: {

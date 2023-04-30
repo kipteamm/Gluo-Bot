@@ -1,21 +1,12 @@
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 import { Command } from "../structures/Command";
 import { ArgType } from "../typings/enums/ArgType";
 
 export default new Command({
     name: 'ping',
-    description: 'cope',  
-    args: [
-        {
-            name: 'bro',
-            type: ArgType.String,
-            description: 'ok',
-            async autocomplete(i) {
-                await i.respond([ { name: 'no', value: 'cope' }])
-            }
-        }
-    ],
+    description: 'Returns the bot\'s ping (it doesn\'t actually)!',
     async execute(i, args) {
-        await i.reply('uwu! reply: ' + args[0])
+        await i.reply('Pong!')
         return true
     },
 })

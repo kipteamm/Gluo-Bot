@@ -1,4 +1,4 @@
-import { GuildMember, User } from "discord.js";
+import { Attachment, GuildMember, User } from "discord.js";
 import { ArgType } from "../enums/ArgType";
 import { IArgData } from "../interfaces/IArgData";
 import { DefaultArgMethod } from "./DefaultArgMethod";
@@ -13,6 +13,7 @@ export type GetArgType<T extends ArgType, Enum> =
     T extends ArgType.Enum ? keyof Enum :
     T extends ArgType.Member ? GuildMember : 
     T extends ArgType.User ? User :  
+    T extends ArgType.Attachment ? Attachment :
     never
 
 export type RetrieveArg<

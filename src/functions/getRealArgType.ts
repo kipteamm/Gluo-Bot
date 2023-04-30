@@ -11,6 +11,11 @@ export default function(type: ArgType): ApplicationCommandOptionType {
         case ArgType.User: {
             return ApplicationCommandOptionType.User
         }
+        
+        case ArgType.Attachment: {
+            return ApplicationCommandOptionType.Attachment
+        }
+
         case ArgType.Integer: {
             return ApplicationCommandOptionType.Integer
         }
