@@ -94,7 +94,7 @@ export default new Command({
 
         await this.config.modLogsChannel?.send(`Case \`${warning.case}\`: ${markdown(member.user.tag)} has been warned by ${markdown(
             i.member.user.tag
-        )}${realReason}`)
+        )}${realReason}${result}`)
 
         await i.editReply(`✅ Case ${markdown(warning.case.toString())}: ${markdown(member.user.tag)} has been successfully warned!`)
 

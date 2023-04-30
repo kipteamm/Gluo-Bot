@@ -3,6 +3,7 @@ import { DatabaseManager } from "../core/DatabaseManager";
 import { Command } from "../structures/Command";
 import { ArgType } from "../typings/enums/ArgType";
 import { NoReason } from "../constants";
+import createCaseOuput from "../functions/createCaseOuput";
 
 export default new Command({
     name: `case`,
@@ -30,33 +31,7 @@ export default new Command({
         const target = await this.users.fetch(c.target_id)
         const mod = await this.users.fetch(c.moderator_id)
 
-        const embed = new EmbedBuilder()
-        .setColor('Blue')
-        .setAuthor({
-            name: target.tag,
-            iconURL: target.displayAvatarURL({
-                size: 2048
-            })
-        })
-        .setTitle(`Case ${c.case}#`)
-        .setDescription(c.reason ?? NoReason)
-        .setFooter({
-            iconURL: mod.displayAvatarURL({ size: 2048 }),
-            text: `Issued by ${mod.tag}`
-        })
-        .setTimestamp(c.issued_at)
-
-        const row = new ActionRowBuilder<ButtonBuilder>()
-        .addComponents(
-            new ButtonBuilder()
-            .setCustomId(`case_update_${i.user.id}_${c.case}`)
-            .setLabel(`Update`)
-            .setStyle(ButtonStyle.Primary),
-            new ButtonBuilder()
-            .setCustomId(`case_delete_${i.user.id}_${c.case}`)
-            .setLabel(`Delete`)
-            .setStyle(ButtonStyle.Danger)
-        )
+        const { embed, row } = createCaseOuput(c, i, mod, target)
 
         await i.editReply({
             embeds: [
