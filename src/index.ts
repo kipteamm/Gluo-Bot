@@ -3,6 +3,8 @@ import { NekoClient } from "./core/NekoClient";
 import { EventManager } from "./core/EventManager";
 import { CommandManager } from "./core/CommandManager";
 import bash from "./functions/bash";
+import { appendFileSync } from "fs";
+import { inspect } from "util";
 
 const client = new NekoClient({
     partials: [
@@ -15,6 +17,8 @@ const client = new NekoClient({
         Partials.User
     ],
     intents: [
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildModeration,
         GatewayIntentBits.Guilds
