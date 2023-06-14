@@ -14,6 +14,14 @@ model TempBan {
   ends_at Float
 }
 
+model StarboardMessage {
+  // The starred message
+  starred_message_id String @id @unique
+  
+  // The me
+  reference_message_id String
+}
+
 model Warning {
   case Int @id @default(autoincrement())
   // The person that got warned

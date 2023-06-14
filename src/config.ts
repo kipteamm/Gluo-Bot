@@ -14,6 +14,11 @@ export default (client: NekoClient) => ({
     owners: [
         '1096285761365610576'
     ],
+    starboard: {
+        minimumStars: 3,
+        emoji: '⭐',
+        channel: client.getChannel<TextChannel>('1118593542621778091')
+    },
     nicknameSystem: {
         pendingNickChangeRoleId: '1102309860349063340',
         requestNickChangeRoleId: '1102309899830046732',
@@ -21,7 +26,7 @@ export default (client: NekoClient) => ({
         reviewChannel: client.getChannel<TextChannel>('1102309791122067506')!
     },
     welcomeLeaveLogs: client.getChannel<TextChannel>('1102209729045995652'),
-    modLogsChannel: client.getChannel<TextChannel>('1054002760665792562'),
+    modLogsChannel: client.getChannel<TextChannel>('1118599800280068196'),
     guild: client.guilds.cache.get('861581041902813194')!,
     // Please keep this ordered
     warnings: [
