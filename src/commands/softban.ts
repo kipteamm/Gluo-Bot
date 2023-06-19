@@ -43,14 +43,14 @@ export default new Command({
         const member = await i.guild.members.fetch(user.id).catch(noop)
         if (member && !PermissionManager.hasHigherRole(i.member, member)) {
             await i.editReply({
-                content: `You cannot manage ${user.tag}.`
+                content: `You cannot manage ${user.username}.`
             })
             return false
         }
 
         const isBanned = await i.guild.bans.fetch(user).catch(noop)
         if (isBanned) {
-            await i.editReply(`${user.tag} is already banned!`)
+            await i.editReply(`${user.username} is already banned!`)
             return false
         }
 
@@ -60,13 +60,13 @@ export default new Command({
         })
         
         if (!banned) {
-            await i.editReply(`Failed to softban ${user.tag}.`)
+            await i.editReply(`Failed to softban ${user.username}.`)
             return false
         }
 
         await i.guild.members.unban(user)
 
-        await i.editReply(`Successfully soft-banned ${user.tag}!`)
+        await i.editReply(`Successfully soft-banned ${user.username}!`)
 
         await this.config.modLogsChannel?.send(`${userMention(i.user.id)} soft-banned ${userMention(user.id)} for \`${reason}\``)
 

@@ -41,7 +41,7 @@ export default new Command({
         const member = await i.guild.members.fetch(user.id).catch(noop)
         if (member && !PermissionManager.hasHigherRole(i.member, member)) {
             await i.editReply({
-                content: `You cannot manage ${user.tag}.`
+                content: `You cannot manage ${user.username}.`
             })
             return false
         }
@@ -54,7 +54,7 @@ export default new Command({
 
         const isBanned = await i.guild.bans.fetch(user).catch(noop)
         if (isBanned) {
-            await i.editReply(`${user.tag} is already banned!`)
+            await i.editReply(`${user.username} is already banned!`)
             return false
         }
 
@@ -63,7 +63,7 @@ export default new Command({
         })
         
         if (!banned) {
-            await i.editReply(`Failed to ban ${user.tag}.`)
+            await i.editReply(`Failed to ban ${user.username}.`)
             return false
         }
         
@@ -72,7 +72,7 @@ export default new Command({
             user_id: user.id
         })
 
-        await i.editReply(`Successfully banned ${user.tag} for \`${
+        await i.editReply(`Successfully banned ${user.username} for \`${
             TimeParser.parseToString(ms)
         }\``)
 

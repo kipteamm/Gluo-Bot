@@ -33,7 +33,7 @@ export default new Command({
     async execute(i, [ member, reason ]) {
         if (!PermissionManager.hasHigherRole(i.member, member)) {
             await i.editReply({
-                content: `You cannot manage ${member.user.tag}.`
+                content: `You cannot manage ${member.user.username}.`
             })
             return false
         }
@@ -92,11 +92,11 @@ export default new Command({
             }
         }
 
-        await this.config.modLogsChannel?.send(`Case \`${warning.case}\`: ${markdown(member.user.tag)} has been warned by ${markdown(
-            i.member.user.tag
+        await this.config.modLogsChannel?.send(`Case \`${warning.case}\`: ${markdown(member.user.username)} has been warned by ${markdown(
+            i.member.user.username
         )}${realReason}${result}`)
 
-        await i.editReply(`✅ Case ${markdown(warning.case.toString())}: ${markdown(member.user.tag)} has been successfully warned!`)
+        await i.editReply(`✅ Case ${markdown(warning.case.toString())}: ${markdown(member.user.username)} has been successfully warned!`)
 
         return true 
     }

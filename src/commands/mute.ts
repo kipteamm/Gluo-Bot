@@ -40,7 +40,7 @@ export default new Command({
     async execute(i, [ member, time, reason ]) {
         if (!PermissionManager.hasHigherRole(i.member, member)) {
             await i.editReply({
-                content: `You cannot manage ${member.user.tag}.`
+                content: `You cannot manage ${member.user.username}.`
             })
             return false
         }
@@ -53,17 +53,17 @@ export default new Command({
 
         const isTimedOut = member.communicationDisabledUntil && member.communicationDisabledUntil.getTime() > Date.now()
         if (isTimedOut) {
-            await i.editReply(`${member.user.tag} is already timed out!`)
+            await i.editReply(`${member.user.username} is already timed out!`)
             return false
         }
 
         const timed = await member.disableCommunicationUntil(new Date(Date.now() + ms), reason).catch(noop)
         if (!timed) {
-            await i.editReply(`Failed to time ${member.user.tag} out.`)
+            await i.editReply(`Failed to time ${member.user.username} out.`)
             return false
         }
 
-        await i.editReply(`Successfully timed ${member.user.tag} out!`)
+        await i.editReply(`Successfully timed ${member.user.username} out!`)
 
         await this.config.modLogsChannel?.send(`${userMention(i.user.id)} timed ${userMention(member.id)} out for \`${
             TimeParser.parseToString(ms)

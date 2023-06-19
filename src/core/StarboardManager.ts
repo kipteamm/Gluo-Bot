@@ -35,7 +35,7 @@ export class StarboardManager {
         if (!found) {
             const embed = new EmbedBuilder()
             .setAuthor({
-                name: msg.author.tag,
+                name: msg.author.username,
                 iconURL: msg.author.displayAvatarURL({ size: 2048 })
             })
             .setColor('Orange')

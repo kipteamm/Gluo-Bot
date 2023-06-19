@@ -7,7 +7,7 @@ export default function(c: Warning, i: ChatInputCommandInteraction<'cached'>, mo
     const embed = new EmbedBuilder()
     .setColor('Blue')
     .setAuthor({
-        name: target.tag,
+        name: target.username,
         iconURL: target.displayAvatarURL({
             size: 2048
         })
@@ -16,7 +16,7 @@ export default function(c: Warning, i: ChatInputCommandInteraction<'cached'>, mo
     .setDescription(c.reason ?? NoReason)
     .setFooter({
         iconURL: mod.displayAvatarURL({ size: 2048 }),
-        text: `Issued by ${mod.tag}`
+        text: `Issued by ${mod.username}`
     })
     .setTimestamp(c.issued_at)
 

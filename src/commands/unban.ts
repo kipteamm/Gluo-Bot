@@ -35,21 +35,21 @@ export default new Command({
         const member = await i.guild.members.fetch(user.id).catch(noop)
         if (member && !PermissionManager.hasHigherRole(i.member, member)) {
             await i.editReply({
-                content: `You cannot manage ${user.tag}.`
+                content: `You cannot manage ${user.username}.`
             })
             return false
         }
 
         const isBanned = await i.guild.bans.fetch(user).catch(noop)
         if (!isBanned) {
-            await i.editReply(`${user.tag} is not banned!`)
+            await i.editReply(`${user.username} is not banned!`)
             return false
         }
 
         const unbanned = await i.guild.members.unban(user, reason)
         
         if (!unbanned) {
-            await i.editReply(`Failed to unban ${user.tag}.`)
+            await i.editReply(`Failed to unban ${user.username}.`)
             return false
         }
 
@@ -64,7 +64,7 @@ export default new Command({
             })
         }
         
-        await i.editReply(`Successfully unbanned ${user.tag}!`)
+        await i.editReply(`Successfully unbanned ${user.username}!`)
 
         await this.config.modLogsChannel?.send(`${userMention(i.user.id)} unbanned ${userMention(user.id)} for \`${reason}\``)
 

@@ -34,7 +34,7 @@ export default new Command({
     async execute(i, [ member, reason ]) {
         if (!PermissionManager.hasHigherRole(i.member, member)) {
             await i.editReply({
-                content: `You cannot manage ${member.user.tag}.`
+                content: `You cannot manage ${member.user.username}.`
             })
             return false
         }
@@ -42,11 +42,11 @@ export default new Command({
         const kicked = await i.guild.members.kick(member, reason)
         
         if (!kicked) {
-            await i.editReply(`Failed to kick ${member.user.tag}.`)
+            await i.editReply(`Failed to kick ${member.user.username}.`)
             return false
         }
 
-        await i.editReply(`Successfully kicked ${member.user.tag}!`)
+        await i.editReply(`Successfully kicked ${member.user.username}!`)
 
         await this.config.modLogsChannel?.send(`${userMention(i.user.id)} kicked ${userMention(member.user.id)} for \`${reason}\``)
 

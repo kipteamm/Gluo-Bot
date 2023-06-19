@@ -43,7 +43,7 @@ export default new Command({
             embeds: [
                 new EmbedBuilder()
                 .setAuthor({
-                    name: i.user.tag,
+                    name: i.user.username,
                     iconURL: i.user.displayAvatarURL()
                 })
                 .setColor('Yellow')

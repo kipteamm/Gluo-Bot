@@ -55,7 +55,7 @@ export class TicketManager {
                 .setFooter({
                     text: `Opened at`
                 })
-                .setTitle(`${member.user.tag}'s ${toTitleCase(category)} Ticket`)
+                .setTitle(`${member.user.username}'s ${toTitleCase(category)} Ticket`)
             ],
             components: [
                 new ActionRowBuilder<ButtonBuilder>()
@@ -76,7 +76,7 @@ export class TicketManager {
         
         return new AttachmentBuilder(Buffer.from(
             messages.map(
-                m => `${m.author.tag} | ${m.createdAt.toUTCString()}\nContent:\n${m.content}${
+                m => `${m.author.username} | ${m.createdAt.toUTCString()}\nContent:\n${m.content}${
                     m.attachments.size ? '\nAttachments:\n' + m.attachments.map(
                         a => a.url
                     ).join('\n') :
@@ -105,10 +105,10 @@ export class TicketManager {
                 new EmbedBuilder()
                 .setColor('Blue')
                 .setAuthor({
-                    name: user.tag,
+                    name: user.username,
                     iconURL: user.displayAvatarURL()
                 })
-                .setTitle(`${toTitleCase(ticket.topic!)} Ticket by ${ticketUser.tag} has been closed`)
+                .setTitle(`${toTitleCase(ticket.topic!)} Ticket by ${ticketUser.username} has been closed`)
                 .setFooter({
                     text: `Closed at`
                 })
