@@ -32,7 +32,7 @@ export class TicketManager {
             type: ChannelType.GuildText,
             name: member.id,
             topic: category,
-            permissionOverwrites: channel.parent!.permissionOverwrites.cache
+            permissionOverwrites: channel.permissionOverwrites.cache
         });
 
         await ch.permissionOverwrites.create(member.id, {
