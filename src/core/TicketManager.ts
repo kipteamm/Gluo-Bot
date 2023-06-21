@@ -32,18 +32,14 @@ export class TicketManager {
             type: ChannelType.GuildText,
             name: member.id,
             topic: category,
-            permissionOverwrites: [
-                {
-                    type: OverwriteType.Member,
-                    id: member.id,
-                    allow: [
-                        'SendMessages',
-                        'ReadMessageHistory',
-                        'ViewChannel'
-                    ]
-                }
-            ]
+            permissionOverwrites: channel.parent!.permissionOverwrites.cache
         });
+
+        await ch.permissionOverwrites.create(member.id, {
+            'SendMessages': true,
+            'ReadMessageHistory': true,
+            'ViewChannel': true
+        })
 
         await ch.send({
             content: `<@${member.id}>`,
