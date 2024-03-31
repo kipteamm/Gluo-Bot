@@ -17,7 +17,7 @@ export default (client: NekoClient) => ({
     starboard: {
         minimumStars: 3,
         emoji: '⭐',
-        channel: client.getChannel<TextChannel>('1118593542621778091')
+        channel: client.getChannel<TextChannel>('1118611344443326484')
     },
     nicknameSystem: {
         pendingNickChangeRoleId: '1102309860349063340',
@@ -25,74 +25,71 @@ export default (client: NekoClient) => ({
         logChannel: client.getChannel<TextChannel>('1102309826069020724')!,
         reviewChannel: client.getChannel<TextChannel>('1102309791122067506')!
     },
-    welcomeLeaveLogs: client.getChannel<TextChannel>('1102209729045995652'),
-    modLogsChannel: client.getChannel<TextChannel>('1118599800280068196'),
-    guild: client.guilds.cache.get('861581041902813194')!,
+    welcomeLeaveLogs: client.getChannel<TextChannel>('937613835454521405'),
+    modLogsChannel: client.getChannel<TextChannel>('937613835454521405'),
+    guild: client.guilds.cache.get('924979519977320459')!,
     // Please keep this ordered
     warnings: [
-        createWarningAction(WarningActionType.Tempban, {
-            amount: 1,
-            // Duration is in ms
-            duration: TimeParser.parseToMS('1m')
-        }),
         createWarningAction(WarningActionType.Timeout, {
-            amount: 2,
+            amount: 1,
             // Duration is in ms
             duration: TimeParser.parseToMS('10m')
         }),
         createWarningAction(WarningActionType.Timeout, {
-            amount: 3,
+            amount: 2,
             duration: TimeParser.parseToMS('1h')
         }),
-        createWarningAction(WarningActionType.Kick, {
-            amount: 4
+        createWarningAction(WarningActionType.Tempban, {
+            amount: 3,
+            // Duration is in ms
+            duration: TimeParser.parseToMS('1m')
+        }),
+        createWarningAction(WarningActionType.Tempban, {
+            amount: 4,
+            duration: TimeParser.parseToMS('1h')
         }),
         createWarningAction(WarningActionType.Tempban, {
             amount: 5,
-            duration: TimeParser.parseToMS('1h')
-        }),
-        createWarningAction(WarningActionType.Tempban, {
-            amount: 6,
             duration: TimeParser.parseToMS('1d')
         }),
         createWarningAction(WarningActionType.Ban, {
-            amount: 7 
+            amount: 6 
         })
     ],
-    transcriptChannel: client.getChannel<TextChannel>('1102189071071182888')!,
+    transcriptChannel: client.getChannel<TextChannel>('1121155371642396683')!,
     buttonRoles: [
         createButtonRole({
             name: 'Announcements',
-            roleId: '1102205582070513664',
-            emoji: '🎯'
-        }),
-        createButtonRole({
-            name: 'Giveaways',
-            roleId: '1102205574927634473',
-            emoji: '🎉'
+            roleId: '944940789375565935',
+            emoji: '📢'
         }),
         createButtonRole({
             name: 'Updates',
-            roleId: '1102205582984871997',
-            emoji: '☣️'
+            roleId: '944940767774908476',
+            emoji: '📚'
+        }),
+        createButtonRole({
+            name: 'Events',
+            roleId: '1041026251785248789',
+            emoji: '🎉'
         })
     ],
     ticketCategories: {
         premium: createTicketCategory({
-            channel: client.getChannel<CategoryChannel>('1102189023503585420')!,
-            description: u => `You opened a ticket regarding a premium feature issue! Please explain to us what happened.`
+            channel: client.getChannel<CategoryChannel>('975033746900283442')!,
+            description: u => `Welcome to the Premium Feature Support. Please provide detailed information about your issue with our premium features.`
         }),
         support: createTicketCategory({
-            channel: client.getChannel<CategoryChannel>('1102176218398339112')!,
-            description: u => `You opened a ticket to get support! Explain us your problem.`
+            channel: client.getChannel<CategoryChannel>('1120028854623424604')!,
+            description: u => `Welcome to Customer Support. We're here to help you resolve any issues with our services. Please describe your problem in detail, and we'll do our best to provide you with a solution.`
         }),
-        concern: createTicketCategory({
-            channel: client.getChannel<CategoryChannel>('1102188955421651015')!,
-            description: u => `You opened a ticket for something that concerns you, what is it?.`
+        complaint: createTicketCategory({
+            channel: client.getChannel<CategoryChannel>('1223914364424290304')!,
+            description: u => `Welcome to the Complaints Department. Your feedback matters to us, and we're here to address any complaints or concerns you may have.`
         }),
         report: createTicketCategory({
-            channel: client.getChannel<CategoryChannel>('1102188985079574548')!,
-            description: u => `You opened a ticket to report an user, please provide a reason(s) and attach proof of the incident.`
+            channel: client.getChannel<CategoryChannel>('1120029949219311638')!,
+            description: u => `Welcome to Reporting Services. If you've encountered behaviour that doesn't follow our community guidelines, please report it here. Kindly provide specific details and attach any relevant evidence to assist us in our investigation.`
         })
     }
 } as const)
