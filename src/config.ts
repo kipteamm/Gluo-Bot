@@ -12,7 +12,7 @@ import createButtonRole from "./functions/createButtonRole";
  */
 export default (client: NekoClient) => ({
     owners: [
-        '1096285761365610576'
+        '675316333780533268'
     ],
     starboard: {
         minimumStars: 3,
